@@ -852,9 +852,48 @@ function bindGlobalEvents() {
 }
 
 // -----------------------------------------------------------------------------
+// Ghi chú tự do (note-pad)
+// -----------------------------------------------------------------------------
+
+const NOTE_STORAGE_KEY = "bill-splitter-note-v1";
+
+function autoResizeNote(notePad) {
+  notePad.style.height = "auto";
+  notePad.style.height = `${notePad.scrollHeight}px`;
+}
+
+function loadNote() {
+  try {
+    const notePad = document.getElementById("notePad");
+    if (!notePad) return;
+    notePad.value = localStorage.getItem(NOTE_STORAGE_KEY) || "";
+    autoResizeNote(notePad);
+  } catch (error) {
+    console.warn("Không thể đọc ghi chú đã lưu:", error);
+  }
+}
+
+function bindNotePad() {
+  const notePad = document.getElementById("notePad");
+  if (!notePad) return;
+
+  notePad.addEventListener("input", () => {
+    autoResizeNote(notePad);
+
+    try {
+      localStorage.setItem(NOTE_STORAGE_KEY, notePad.value);
+    } catch (error) {
+      console.warn("Không thể lưu ghi chú:", error);
+    }
+  });
+}
+
+// -----------------------------------------------------------------------------
 // App bootstrap
 // -----------------------------------------------------------------------------
 
 bindGlobalEvents();
+bindNotePad();
 if (!loadState()) initState();
 renderApp();
+loadNote();

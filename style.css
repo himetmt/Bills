@@ -738,3 +738,49 @@ h1 {
     top: auto;
   }
 }
+
+/* Khung ghi chú tự do — khung riêng, nằm dưới khung Tổng */
+.result-column {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+.note-panel {
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  box-shadow: var(--shadow);
+  padding: 8px 9px 9px;
+}
+.note-panel-head {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--line);
+}
+.note-panel-title {
+  margin: 0;
+  font-family: Nunito, Manrope, system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.note-panel-input {
+  width: 100%;
+  min-height: 44px;
+  resize: none;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fafafa;
+  padding: 6px 7px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 9px;
+  line-height: 1.4;
+  outline: none;
+}
+.note-panel-input:focus {
+  border-color: var(--line-strong);
+  background: #fff;
+}
